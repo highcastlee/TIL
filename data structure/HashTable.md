@@ -41,12 +41,14 @@
       >// indexKey는 내부 연결 리스트 내에서 구체적으로 내가 원하는 데이터를 구분하기 위한 key 값이다.(충돌 해결용 key )
       >2) indexKey를 해시 함수로 변환 // hashAddress = hashFunction(indexKey)
       >3) hashTable 내 hashAddress를 키로 갖는 값이 존재한다면,
-      >   for (let index in hashTable[hashAddress]){
-      >     if (hashTable[hashAddress][index][0] === indexKey){
-      >       return hashTable[hashAddress][index][1]
-      >     }
-      >   }
-      >   return null
+      >   ```python
+      >    for (let index in hashTable[hashAddress]){
+      >      if (hashTable[hashAddress][index][0] === indexKey){
+      >        return hashTable[hashAddress][index][1]
+      >      }
+      >    }
+      >    return null
+      >   ```
       >4) 존재하지 않는다면, return null
 
 
@@ -55,7 +57,9 @@
       - 폐쇄 해싱 or Close Hashing 기법 중 하나
         - 해쉬 테이블 저장공간 안에서 충돌 문제 해결
         - 해당 hash address의 다음 address부터 맨 처음 나오는 빈공간에 저장하는 기법
-      ```javascript
+      ```python
+      <!-- python -->
+
       hash_table = list([0 for i in range(8)])
 
       def get_key(data):
