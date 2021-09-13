@@ -264,3 +264,9 @@
   ```
 
 <img src="https://heropy.blog/images/screenshot/css-grid/auto-fill-3.jpg">
+
+
+
+## 브라우저 지원
+
+<img src="https://heropy.blog/images/screenshot/css-grid/grid-browser-support.jpg">
