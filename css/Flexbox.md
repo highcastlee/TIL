@@ -164,3 +164,49 @@
   }
   ```
   
+
+### justify-content
+  - 주 축의 정렬 방법을 설정
+  - 속성 값
+    - flex-start(기본 값) : 주 축의 시작점으로 정렬
+    - flex-end : 주 축의 끝으로 정렬
+    - center : 중앙 정렬
+    - space-between : 시작 item은 주 축의 시작점, 마지막 item은 끝 점에 정렬되고, 나머지 item은 사이에 고르게 정렬.
+    - space-around : item들을 균등한 여백으로 정렬 (양 끝 여백 존재)
+    - space-evenly : item과 양 끝점의 여백을 균등하게 정렬
+
+     <img src="https://studiomeal.com/wp-content/uploads/2020/01/10-1.jpg" alt="justify-content" width="60%">
+
+
+
+### align-items
+  - 교차 축의 정렬 방법을 설정 (1 줄)
+  - 속성 값
+    - stretch(기본 값) : Container의 교차 축을 채우기 위해 items를 늘림
+    - baseline : items를 '문자 기준선'에 정렬
+    - 대부분 justify-content와 동일
+  - flex-wrap을 통해 items가 여러 줄일 경우, align-content 속성이 우선 적용
+  - align-items를 사용하려면 align-content 속성을 기본 (stretch)로 설정해야한다.
+
+### align-content
+  - 교차 축의 정렬 방법을 설정 (여러 줄)
+  - **flex items가 여러 줄이고, 여백이 있을 때 사용**
+
+### align-self
+  - 교차 축에서 개별 item의 정렬 방법을 설정
+  - 필요에 의해 일부 item만 정렬 방법을 변경하려고 할 경우 사용
+  - align-items 속성보다 우선
+  - auto(기본 값) : align-items 속성을 상속 받음
+  ```css
+  .container{
+    align-items: center;
+  }
+  .item{
+    height:50px;
+  }
+  .item:nth-child(3){
+    height:auto;
+    align-self: stretch;
+  }
+  ```
+  <img src="https://heropy.blog/images/screenshot/css-flexible-box/flex-align-self.jpg" alt="align-self" width="60%">
