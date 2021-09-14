@@ -54,6 +54,8 @@ function Node ({ $app, initialState, onClick }) {
         `
         })
         .join('')
+
+      // root일 경우 뒤로가기 이미지 추가
       this.$target.innerHTML = !this.state.isRoot
         ? `<div class="Node"><img src="/assets/prev.png" /></div>${nodesTemplate}`
         : nodesTemplate
@@ -61,6 +63,12 @@ function Node ({ $app, initialState, onClick }) {
     this.$target.querySelectorAll('Node').forEach($node => {
       $node.addEventListener('click', e => {
         const { nodeId } = e.target.dataset
+
+        // node 클릭 시, nodeId가 없다면, 뒤로가기 버튼임
+        if (!nodeId){
+          this.onBackClick()
+        }
+
         const selectedNode = this.state.nodes.find(node => node.id === nodeId)
 
         if (selectedNode) {
@@ -127,9 +135,43 @@ function App($app){
     },
     onClick: (node) => {
       if (node.type === 'DIRECTORY'){
-        // breadcrumb 관련 처리
+        const nextNodes = await request(node.id)
+        this.setState({
+          ...this.state,
+          depth: [...this.state.depth, node],
+          nodes: nextNodes
+        })
       }else if (node.type === "FILE"){
         // breadcrumb 관련 처리
+      }
+    },
+    // 뒤로가기 시, 이전 node 있으면 해당 nodeId로 request 실행
+    // prevNodeId 없으면, rootNode 실행
+    onBackClick: async () => {
+      try{
+        const nextState = {...this.state}
+        nextState.depth.pop()
+        const prevNodeId = nextState.depth.length === 0 
+        ? null 
+        : nextState.depth[nextState.depth.length-1].id
+
+        if(prevNodeId === null){
+          const rootNodes = await request()
+          this.setState({
+            ...nextState,
+            isRoot: true,
+            nodes: rootNodes
+          })
+        }else{
+          const prevNodes = await request(prevNodeId)
+          this. setState({
+            ...nextState,
+            isRoot: false,
+            nodes: prevNodes
+          })
+        }
+      }catch(e){
+
       }
     }
   })
@@ -157,6 +199,27 @@ function request(nodeId){
     .catch(e=>{
       throw new Error('에러');
     })
+}
+
+function ImageView({$app, initialState}){
+  this.state = initialState
+  this.$target = document.createElement('div')
+  this.$target.className = 'Modal ImageView'
+
+  $app.appendChild(this.$target)
+
+  this.setState = (nextState) => {
+    this.state = nextState
+    this.render()
+  }
+
+  this.render = () => {
+    this.$target.innerHTML = `
+    <div class="content">
+      ${this.state ? `<img src="${IMAGE_PATH_PREFIX}${this.state}">` :''}
+    </div>`
+    this.$target.style.display = this.state ? 'block' : 'none'
+  }
 }
 
 ```
