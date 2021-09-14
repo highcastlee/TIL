@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>css 연습문제 5번</title>
+  <style>
+    body{
+      margin:0;
+    }
+    #header {
+      display:flex;
+      align-items: baseline;
+      border-bottom: 2px solid #000;
+    }
+    .comment-title{
+      font-size:1.5rem;
+      font-weight: bold;
+      margin-left:10px;
+    }
+    .comment-number{
+      color:#06a27d;
+      font-size: 1.3rem;
+      margin:0 10px;
+    }
+    #main{
+      width: 100%;
+      height: 100%;
+    }
+    .comment-wrap{
+      box-sizing: border-box;
+      padding: 18px 20px;
+      width: 100%;
+      border-bottom: 1px solid gray;
+    }
+    .comment-user{
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin: 0;
+    }
+    .comment-time{
+      color:#939393;
+      font-size: 1rem;
+      margin: 0;
+    }
+    .comment-content{
+      width: 100%;
+      font-size: 0.9rem;
+      word-break: keep-all;
+    }
+  </style>
+</head>
+<body>
+  <header id="header">
+    <h1 class="comment-title">댓글</h1>
+    <span class="comment-number">923</span>  
+  </header>
+  <main id="main">
+    <article class="comment-wrap">
+      <p class="comment-user">정*석</p>
+      <p class="comment-time">2021.03.16</p>
+      <p class="comment-content" >
+        1차 합격하고 실제 네이버간 본인입니다 ㅎㅎ 저는 전공자긴 하지만 학점은 3.0 아래고 나이도 30세가 넘었습니다. 제가 가진건 끈기 단 하나였어요. 목표를 잡고 일부는 성취하고, 일부는 실패하더라도 전략을 수정하여 계속 도전해 결국엔 목표를 이루려고 하였습니다. '이쯤 했으면 됐다' 생각할 때 포기하지 마시고 한발자국씩 더 나아가보세요. 분명히 좋은 결과가 있을거에요! 화이팅입니다.
+      </p>
+    </article>
+    <article class="comment-wrap">
+      <p class="comment-user">한*현</p>
+      <p class="comment-time">2021.03.21</p>
+      <p class="comment-content" >
+        포기하기마시고 즐거운 개발하셔서 꽃길 걸을 수 있길 바랍니다!
+      </p>
+    </article>
+    <article class="comment-wrap">
+      <p class="comment-user">이*자</p>
+      <p class="comment-time">2021.03.16</p>
+      <p class="comment-content" >
+        능력있고 열심히 하는 분들에게 좋은 결과 있기를 바랍니다. 항상 좋은 일만 가득하셨으면 좋겠습니다. 멋진 앞날을 기원하겠습니다.
+      </p>
+    </article>
+    <article class="comment-wrap">
+      <p class="comment-user">이*윤</p>
+      <p class="comment-time">2021.03.16</p>
+      <p class="comment-content" >
+        네카라쿠배 1기 모집 글을 본게 엊그제 같은데 벌써 최종 15명이네요. 꼭 네카라쿠배 가셔서 즐겁게 개발일 하시면 좋겠습니다! 앞으로의 길을 응원해요. 저도 2기 지원할게요~!!
+      </p>
+    </article>
+  </main>
+</body>
+</html>
