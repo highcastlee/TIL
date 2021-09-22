@@ -1,6 +1,31 @@
 
 # 네트워크
 
+## 브라우저에 URL을 입력했을 때, 발생하는 일들
+<img src="https://www.netmanias.com/ko/?m=attach&no=1997">
+
+  1. 사용자의 위치에서 가장 가까운 DNS(로컬 DNS)에 IP 주소 query(요청)
+  2. 로컬 DNS 내부에 대항 URL과 매칭되는 IP 주소가 캐싱되어 있는지 확인
+     (캐싱 되어있으면, 6번으로 이동)
+  3. 캐시에 없으면, 로컬 DNS는 루트 DNS로 URL IP주소 query
+  4. 루트 DNS에 해당 URL의 IP 정보 없으면, .com을 관리하는 DNS 주소 알려줌
+  5. 로컬 DNS는 .com을 관리하는 DNS로 가서 URL query
+  
+  - 최종 IP 주소를 알아낼 때까지 질의 반복 (= DNS iterative query)
+
+  6. IP 주소 발견하면, SYN 신호를 해당 아이피로 보냄
+  7. 이를 받은 서버는 SYN+ACK 신호를 보냄
+  8. 클라이언트가 최종 7번의 신호를 받고 ACK를 보내며 3-way handshake
+  
+  >HTTP/1.1부터 'HTTP 지속 연결 상태(persistence connection)'라는 개념을 도입하여 모든 바이트에 3-way handshake를 하는 것이 아니라 최초에 연결 이후는 연결을 유지하고 모든 연결이 끝났을 때 헤더에 연결 종료를 알림으로써 TCP 연결을 끊는 방식 사용
+
+  >HTTP 지속 연결 상태를 기반으로 HTTP pipelining 기술 적용
+  > -> 한 번 연결된 TCP 연결을 기반으로 여러 개의 요청을 '병렬' 요청함으로써 FIFO 방식 처리의 단점인 latency(지연) 문제를 해결
+  
+  >이후 HTTP/2.0 에서는 최초 TCP 연결 이후 스트림(stream)방식으로 여러 요청을 처리하는 멀티플렉싱 기능 도입
+
+  >HTTP/3.0 에서는 TCP가 아닌 UDP 방식으로 데이터 전송함으로써 3-way handshake 사용하지 않도록 함
+
 ## OSI 7계층 vs TCP/IP 4계층
   <img src="https://t1.daumcdn.net/cfile/tistory/999DED345B7A26DF05" width="70%">
 
