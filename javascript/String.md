@@ -100,10 +100,52 @@
   ```
 
 ### 문자열 추출
-  - String.slice(start,end)
-  - String.substring(start,end)
-  - String.substr(start, end)
+  - 위치 기반 문자열 추출
+    - String.slice(start,end)
+      - 파라미터의 순서만 맞으면 됨
+      - 역순이면 빈 값 return
+    - String.substring(start,end)
+      - 둘 다 음수일 경우 빈 값 return
+  
+  - 길이 기반 문자열 추출
+    - String.substr(start, length)
+  ```javascript
+    let text = "hello, world!!!";
+
+    console.log(text.slice(1,5));   // ello
+    console.log(text.substring(1,5));   // ello
+
+    console.log(text.slice(-3));   // !!!
+    console.log(text.substring(-3));   // !!!
+
+    console.log(text.slice(5,1));   // ""   (slice는 순서 안 맞으면 빈 값 return)
+    console.log(text.substring(5,1));   // ello
+
+    console.log(text.slice(-5,7));   // ""   
+    console.log(text.slice(-5,-7));   // ""
+    console.log(text.slice(-5,-2));   // "ld!"
+    
+    console.log(text.substring(-5,7));   // ello
+    console.log(text.substring(-5,-7));   // ""
+    console.log(text.substring(-5,-2));   // ""
+
+    // 길이 기반 substr()
+    console.log(text.substr(3,3));   // llo   (index 3부터 3글자 리턴)
+
+
+  ```
 
 
 ### 문자열 분할
   - String.split(separator, limit)
+    - 배열로 문자열을 분할하여 반환
+    
+  ```javascript
+  let text = "apple banana melon";
+  
+  console.log(text.split(" ")); // ['apple','banana','melon'] (공백 기준 문자열 분할)
+
+  console.log('hello'.split("")); // ['h','e','l','l','o']  (문자 분할)
+
+  console.log('hello'.split("", 3)); // ['h','e','l']  (길이 3까지만 분할)
+  ```
