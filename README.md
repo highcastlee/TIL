@@ -25,8 +25,23 @@
   - [Transition](https://github.com/highcastlee/TIL/blob/28384c5b402528d4a8bb4fc20f4cf8167e9fcce2/css/Transition.md)
   - [Animation](https://github.com/highcastlee/TIL/blob/28384c5b402528d4a8bb4fc20f4cf8167e9fcce2/css/%EC%95%A0%EB%8B%88%EB%A9%94%EC%9D%B4%EC%85%98.md)
 ## Javascript 
+  - [자료형과 형 변환](https://github.com/highcastlee/TIL/blob/main/javascript/자료형과%20형%20변환.md)
+  - [JS 메소드 활용](https://github.com/highcastlee/TIL/blob/main/javascript/javascript%20메소드%20활용.md)
+  - [함수 기초](https://github.com/highcastlee/TIL/blob/main/javascript/함수%20기초.md)
+  - [Collection](https://github.com/highcastlee/TIL/blob/main/javascript/Collection.md)
+  - [Number](https://github.com/highcastlee/TIL/blob/main/javascript/Number.md)
+  - [String](https://github.com/highcastlee/TIL/blob/main/javascript/String.md)
+  - [Math](https://github.com/highcastlee/TIL/blob/main/javascript/Math.md)
+  - [Date](https://github.com/highcastlee/TIL/blob/main/javascript/Date.md)
+  - [Error](https://github.com/highcastlee/TIL/blob/main/javascript/Error.md)
+  - [배열](https://github.com/highcastlee/TIL/blob/main/javascript/배열.md)
+  - [고차함수](https://github.com/highcastlee/TIL/blob/main/javascript/고차함수.md)
+  - [얕은 복사와 깊은 복사](https://github.com/highcastlee/TIL/blob/main/javascript/참조%20복사.md)
   - [커링(Curring)](https://github.com/highcastlee/TIL/blob/1ba26222c4dbb4f28f520f8b175643ec632cda66/javascript/21.05.17.md)
-
+ 
+## JS_Algorithm
+  - [순열과 조합](https://github.com/highcastlee/TIL/blob/main/javascript/순열과%20조합.md)
+ 
 
 ## Data Structure
   - [해시테이블](https://github.com/highcastlee/TIL/blob/c56f965cbceb7c559629bf7da1bc56714a35a5b9/data%20structure/HashTable.md)
