@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"/>
+  <title>table accessibility</title>
+  <style>
+    table{
+      border-spacing: 0;
+      border-collapse: collapse;
+    }
+    table td, table th{
+      box-sizing: border-box;
+      vertical-align: middle;
+      text-align: center;
+      font-size: 16px;
+      border: 1px solid #ddd;
+      padding: 15px;
+    }
+    table th:first-child, table td:first-child{
+      border-left: none;      
+    }
+    table th:last-child, table td:last-child{
+      border-right: none;
+    }
+    table td:last-child{
+      text-align: left;
+    }
+    thead tr th{
+      background-color: #f7f7f7;
+    }
+    th {
+     font-weight: bold;
+    }
+    td {
+      color: #666;
+    }
+    p {
+      margin:5px 0 0 0;
+    }
+    button {
+      height: 30px;
+      border-style: none;
+      background-color: rgb(209, 3, 3);
+      color: white;
+    }
+    button:hover{
+      cursor: pointer;
+    }
+    #section{
+      width: 320px;
+    }#type{
+      width: 160px;
+    }
+    #price{
+      width: 160px;
+    }
+    #discountPrice{
+      width: 160px;
+    }
+    #offer{
+      width: 400px;
+    }
+    .second{
+      font-weight: 300;
+      color:#666;
+    }
+    .price{
+      color: rgb(209, 3, 3);
+    }
+    .discount{
+      color: #935800;
+    }
+    .onsite{
+      display:none;
+    }
+    .a11y-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      clip-path: polygon(0 0, 0 0, 0 0);
+    }
+  </style>
+</head>
+<body>
+  <table class="seatTable">
+    <caption class="a11y-hidden">
+      단일 경기 티켓 예매 요금표<br/>
+      경기장 구역, 권종, 예매 가격, 멤버십 할인된 가격, 제공사항 안내
+    </caption>
+    <colgroup span="2" class="ticket" ></colgroup>
+    <colgroup class="price" ></colgroup>
+    <colgroup class="discount" ></colgroup>
+    <colgroup class="onsite" ></colgroup>
+    <colgroup class="offer" ></colgroup>
+    <thead>
+      <tr>
+        <th id="ticket" colspan="2" class="ticket">티켓</th>
+        <th id="price" rowspan="2" class="price">예매 가격</th>
+        <th id="discountPrice" rowspan="2" class="discount">멤버십 할인</th>
+        <th id="onsitePrice" rowspan="2"  class="onsite">현장 가격</th>
+        <th id="offer" rowspan="2" class="offer">제공사항</th>
+      </tr>
+      <tr>
+        <th id="section" >구역</th>
+        <th id="type">권종</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th id="vip" headers="section" class="first">
+          <strong>VIP 테이블석</strong>
+          <p><button data-seat="seat18">경기장 View</button></p>
+        </th>
+        <th id="vipNormal" headers="ticket type vip" class="second">일반</th>
+        <td headers="price vipNormal vip" class="price">35,000원</td>
+        <td headers="discountPrice vipNormal vip" class="discount">33,000원</td>
+        <td headers="onsitePrice vipNormal vip" class="onsite">37,000원</td>
+        <td headers="offer vip" class="last">- 테이블석(1인/2인)</td>
+      </tr>
+      <tr>
+        <th id="premium" headers="section" class="first">                    	
+          <strong>프리미엄<br/>서측 지정석</strong>
+          <p><button data-seat="seat11">경기장 View</button></p>
+        </th>
+        <th id="premiumNormal" headers="ticket type premium"class="second">일반</th>
+        <td headers="price premiumNormal premium" class="price">25,000원</td>
+        <td headers="discountPrice premiumNormal premium" class="discount">23,000원</td>
+        <td headers="onsitePrice premiumNormal premium" class="onsite">27,000원</td>
+        <td headers="offer premium" class="last" rowspan="5">- 지정석으로 운영</td>
+      </tr>
+      <tr>
+        <th id="west" headers="section" class="first">
+          <strong>서측 지정석</strong>
+          <p><button data-seat="seat10">경기장 View</button></p>
+        </th>
+        <th id="westNormal" headers="ticket type west" class="second">일반</th>
+        <td headers="price westNormal west" class="price">20,000원</td>
+        <td headers="discountPrice westNormal west" class="discount">18,000원</td>
+        <td headers="onsitePrice westNormal west" class="onsite">22,000원</td>
+      </tr>
+      <tr>
+        <th id="sinhan" headers="section" class="first" rowspan="3">
+          <div><img src="https://www.fcseoul.com/resources/front/images/sub/tickets/shinhan.png" alt="신한카드"></div>
+          <strong>
+            신한카드 지정석
+          </strong>
+          <p><button data-seat="seat7">경기장 View</button></p>
+        </th>
+        <th id="sinhanAdult" headers="ticket type sinhan" class="second">성인</th>
+        <td headers="price sinhanAdult sinhan" class="price">16,000원</td>
+        <td headers="discountPrice sinhanAdult sinhan" class="discount">14,000원</td>
+        <td headers="onsitePrice sinhanAdult sinhan" class="onsite">18,000원</td>
+      </tr>
+      <tr>
+        <th id="sinhanYouth" headers="ticket type sinhan"class="second" >청소년</th>
+        <td headers="price sinhanYouth sinhan" class="price">13,000원</td>
+        <td headers="discountPrice sinhanYouth sinhan" class="discount">11,000원</td>    
+        <td headers="onsitePrice sinhanYouth sinhan" class="onsite">15,000원</td>                
+      </tr>
+      <tr>
+        <th id="sinhanKid" headers="ticket type sinhan" class="second">어린이</th>
+        <td headers="price sinhanKid sinhan" class="price">7,000원</td>
+        <td headers="discountPrice sinhanKid sinhan" class="discount">5,000원</td>
+        <td headers="onsitePrice sinhanKid sinhan" class="onsite">9,000원</td>                
+      </tr>
+      <tr>
+        <th id="fifa" headers="section" class="first" rowspan="2">
+          <div>
+            <img src="https://www.fcseoul.com/resources/front/images/sub/tickets/fifa4.png?210304" alt="피파온라인">
+          </div>
+          <strong>피파온라인4<br/>ZONE</strong>
+          <p><button data-seat="seat8">경기장 View</button></p>
+        </th>
+        <th id="fifaAdult" headers="ticket type fifa" class="second">성인</th>
+        <td headers="price fifaAdult fifa" class="price">20,000원</td>
+        <td headers="discountPrice fifaAdult fifa" class="discount">-</td>
+        <td headers="onsitePrice fifaAdult fifa" class="onsite">22,000원</td>
+        <td headers="offer fifa" class="last" rowspan="2">
+          <p>- 넥슨 캐시 10,000원 쿠폰 증정</p>
+          <p class="ls">- 경기 종료 후 3일 이내 예매자 휴대폰 번호로 문자발송 예정</p>
+          <p>* 넥슨 계정 1개당 1회만 사용 가능합니다.</p> 
+          <p class="line">- FA컵 경기에는 미운영 예정</p>
+        </td>
+      </tr>
+      <tr>
+        <th id="fifaYouth" headers="ticket type fifa" class="second">청소년/어린이</th>
+        <td headers="price fifaYouth fifa" class="price">17,000원</td>
+        <td headers="discountPrice fifaYouth fifa" class="discount">-</td>  
+        <td headers="onsitePrice fifaYouth fifa" class="onsite">19,000원</td>                  
+      </tr>
+      <tr>
+        <th id="normal" headers="section" class="first" rowspan="3">
+          <strong>일반 지정석</strong>
+          <p><button data-seat="seat1">경기장 View</button></p>
+        </th>
+        <th id="normalAdult" headers="ticket type normal" class="second">성인</th>
+        <td headers="price normalAdult normal" class="price">14,000원</td>
+        <td headers="discountPrice normalAdult normal" class="discount">12,000원</td>
+        <td headers="onsitePrice normalAdult normal" class="onsite">16,000원</td>
+        <td headers="offer normal" class="last" rowspan="3"><p>- 지정석으로 운영</p></td>
+      </tr>
+      <tr>
+        <th id="normalYouth" headers="ticket type normal" class="second">청소년</th>
+        <td headers="price normalYouth normal" class="price">11,000원</td>
+        <td headers="discountPrice normalYouth normal" class="discount">9,000원</td>
+        <td headers="onsitePrice normalYouth normal" class="onsite">13,000원</td>
+      </tr>
+      <tr>
+        <th id="normalKid" headers="ticket type normal" class="second">어린이</th>
+        <td headers="price normalKid normal" class="price">5,000원</td>
+        <td headers="discountPrice normalKid normal" class="discount">3,000원</td>
+        <td headers="onsitePrice normalKid normal" class="onsite">7,000원</td>
+      </tr>
+      <tr>
+        <th id="away" class="first" rowspan="2">
+          <strong>원정석</strong>
+          <p><button data-seat="seat4">경기장 View</button></p>
+        </th>
+        <th id="awayAdult" headers="ticket type away" class="second">성인/청소년</th>
+        <td headers="price awayAdult away" class="price">14,000원</td>
+        <td headers="discountPrice awayAdult away" class="discount">-</td>
+        <td headers="onsitePrice awayAdult away" class="onsite">16,000원</td>
+        <td headers="offer away" class="last" rowspan="2"><p>- 지정석으로 운영</p></td>
+      </tr>
+      <tr>
+        <th id="awayKid" headers="ticket type away" class="second">어린이</th>
+        <td headers="price awayKid away" class="price">5,000원</td>
+        <td headers="discountPrice awayKid away" class="discount">-</td>
+        <td headers="onsitePrice awayKid away" class="onsite">7,000원</td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>
+
+
