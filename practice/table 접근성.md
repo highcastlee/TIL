@@ -3,7 +3,8 @@
 
 ## 1. 접근성이 좋지 않은 테이블 선정
   - [FC SEOUL 티켓 요금표](https://www.fcseoul.com/tickets/reserveSingleTicket)
-    <img src="https://user-images.githubusercontent.com/62092665/135714445-6c10c7bf-2e83-45db-b5da-ded91fe089d2.png" width="70%">
+  
+    <img src="https://user-images.githubusercontent.com/62092665/135714445-6c10c7bf-2e83-45db-b5da-ded91fe089d2.png" width="100%">
 
   - 현재 html 코드 예시
     ```html
@@ -414,7 +415,7 @@
 
 ---
 ## 5. HTML/CSS를 활용하여 구현
-  <img src="https://user-images.githubusercontent.com/62092665/135730304-09fe19f0-a2f2-417e-a3d6-9f9e0ae9555b.png" width="50%" alt="수정된 데이터 테이블 예제"/>
+  <img src="https://user-images.githubusercontent.com/62092665/135730304-09fe19f0-a2f2-417e-a3d6-9f9e0ae9555b.png" width="100%" alt="수정된 데이터 테이블 예제"/>
 
   - [FC SEOUL table 실습 html 코드 바로가기](https://github.com/highcastlee/TIL/blob/main/practice/table_practice.html)
 
@@ -422,7 +423,7 @@
 
 ## 6. 문법 검사 결과 제출
   1. #### 첫 번째 제출 결과
-      <img src="https://user-images.githubusercontent.com/62092665/135725890-30f91ee0-816c-49fd-9297-672908f5cdff.png" width="60%" />
+      <img src="https://user-images.githubusercontent.com/62092665/135725890-30f91ee0-816c-49fd-9297-672908f5cdff.png" width="100%" />
       - `Error: Element div not allowed as child of element strong in this context.`
         - 문제 : strong 요소 내 div 요소 사용 불가
           - FC SEOUL 사이트에서도 strong 내 div가 포함되어 있음
@@ -430,7 +431,7 @@
         - 해결 : div 이후 strong 요소 사용으로 수정
   
   2. #### 두 번째 제출 결과
-      <img src="https://user-images.githubusercontent.com/62092665/135726067-985b6609-0c2d-47f4-95c1-65ece70801ce.png" width="60%" />
+      <img src="https://user-images.githubusercontent.com/62092665/135726067-985b6609-0c2d-47f4-95c1-65ece70801ce.png" width="100%" />
       - No errors or warnings
 
 ---
@@ -439,7 +440,7 @@
   - [FC SEOUL 단일 경기 티켓 예매 페이지](https://www.fcseoul.com/tickets/reserveSingleTicket)
 
 ### 7-1. 접근성 보고서
-  <img src="https://user-images.githubusercontent.com/62092665/135726356-db7463eb-4b76-4d7b-bfea-5568f6a4156d.png" width="60%" alt="lighthouse accessibility report"/>
+  <img src="https://user-images.githubusercontent.com/62092665/135726356-db7463eb-4b76-4d7b-bfea-5568f6a4156d.png" width="100%" alt="lighthouse accessibility report"/>
   
   1. #### 콘텐츠의 가독성을 향상시켜라
       - Message : **`Background and foreground colors do not have a sufficient contrast ratio`**
@@ -450,7 +451,7 @@
 
   2. #### Names and labels. 보조 기술 사용자들을 위해 명칭과 레이블을 제공하라
       - Message : **`<frame> or <iframe> elements do not have a title`**
-        - <img src="https://user-images.githubusercontent.com/62092665/135726644-6160bc30-4d45-409a-9bfc-b9696403fef5.png" width="60%"/>
+        - <img src="https://user-images.githubusercontent.com/62092665/135726644-6160bc30-4d45-409a-9bfc-b9696403fef5.png" width="100%"/>
         - 문제 : iframe을 사용할 때, title 속성 등 적절한 제목을 제공하지 않음
           - 2.4.2 (제목 제공) 페이지, 프레임, 콘텐츠 블록에는 적절한 제목을 제공해야 한다.
         - 해결 : title 속성으로 제목 제공
@@ -464,7 +465,7 @@
 
 
 ### 7-2. SEO 보고서
-  <img src="https://user-images.githubusercontent.com/62092665/135726303-b1ddc796-1260-41f0-b35f-ce5099cb7966.png" width="60%" alt="lighthouse SEO report"/>
+  <img src="https://user-images.githubusercontent.com/62092665/135726303-b1ddc796-1260-41f0-b35f-ce5099cb7966.png" width="100%" alt="lighthouse SEO report"/>
 
   1. #### 모바일 친화적인 페이지를 제공하라.
       - Message : **`Does not have a <meta name="viewport"> tag with width or initial-scale`**
@@ -483,10 +484,10 @@
 
 ## 접근성 개선 후기
   - 개선 전
-    <img src="https://user-images.githubusercontent.com/62092665/135714445-6c10c7bf-2e83-45db-b5da-ded91fe089d2.png" width="70%">
+    <img src="https://user-images.githubusercontent.com/62092665/135714445-6c10c7bf-2e83-45db-b5da-ded91fe089d2.png" width="100%">
 
   - 개선 후
-    <img src="https://user-images.githubusercontent.com/62092665/135730304-09fe19f0-a2f2-417e-a3d6-9f9e0ae9555b.png" width="70%">
+    <img src="https://user-images.githubusercontent.com/62092665/135730304-09fe19f0-a2f2-417e-a3d6-9f9e0ae9555b.png" width="100%">
 
   1. **무엇이 th이고, 무엇인 td인가**
       - 작업할 데이터 테이블을 예상하며 데이터의 형태에 따라 th와 td를 구분해야하는데, th의 기준을 잡는 것이 애매하다고 느껴질 때가 있다. 내가 작업한 FC SEOUL 티켓 요금표 테이블에서도 '구역' column의 데이터는 th로 설정하는 것이 맞다고 생각했지만, 다음 column인 '권종' 또한 th로 볼 수 있지 않을까 생각이들었다. 왜냐하면, 신한카드 지정석의 경우 권종이 각 행의 제목이 될 수 있기 때문이다. 그리고 '권종'을 th로 설정한다면, 애초에 `구역`과 `권종` column을 하나의 colgroup으로 묶을 때, 테이블이 더 명확한 의미를 가지지 않을까 생각이 들었다.
