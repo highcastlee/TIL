@@ -424,7 +424,9 @@
 ## 6. 문법 검사 결과 제출
   1. #### 첫 번째 제출 결과
       <img src="https://user-images.githubusercontent.com/62092665/135725890-30f91ee0-816c-49fd-9297-672908f5cdff.png" width="100%" />
+      
       - `Error: Element div not allowed as child of element strong in this context.`
+      
         - 문제 : strong 요소 내 div 요소 사용 불가
           - FC SEOUL 사이트에서도 strong 내 div가 포함되어 있음
           - 다른 행에서는 div 이후 strong으로 되어있는 것으로 보아 오타 실수로 추정됨
@@ -436,7 +438,7 @@
 
 ---
 
-## 7. FC SEOUL 페이지 ightHouse 분석 보고서
+## 7. FC SEOUL 페이지 LightHouse 분석 보고서
   - [FC SEOUL 단일 경기 티켓 예매 페이지](https://www.fcseoul.com/tickets/reserveSingleTicket)
 
 ### 7-1. 접근성 보고서
@@ -477,7 +479,7 @@
       - Message : **`Image elements do not have [alt] attributes`**
         - 문제 : image에 alt 속성을 사용하지 않음
           - 1.1.1 (적절한 대체 텍스트 제공) 텍스트 아닌 콘텐츠는 그 의미나 용도를 이해할 수 있도록 대체 텍스트를 제공해야 한다.
-      - 해결 alt 속성으로 이미지 설명 추가
+        - 해결 alt 속성으로 이미지 설명 추가
 
 
 --- 
