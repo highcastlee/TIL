@@ -97,41 +97,6 @@
 
 
 
-### iterable & iterator
-  - 이터러블(iterable)
-    - 이터러블 프로토콜을 준수한 객체
-    - 이터러블은 Symbol.iterator 메소드를 구현하거나 프로토타입 체인에 의해 상속한 객체를 말한다.
-    - Symbol.iterator 메소드는 이터레이터를 반환
-    - 이터러블은 for … of 문에서 순회할 수 있으며 Spread 문법의 대상으로 사용할 수 있다.
-  
-  - Symbol.iterator 메소드를 소유하지 않은 일반 객체
-    ```javascript
-    const obj = { a: 1, b: 2 };
-    // 일반 객체는 Symbol.iterator 메소드를 소유하지 않는다.
-    // 따라서 일반 객체는 이터러블 프로토콜을 준수한 이터러블이 아니다.
-
-    console.log(Symbol.iterator in obj); // false  
-    for (const p of obj) {   // TypeError: obj is not iterable
-      console.log(p);
-    }
-    ```
-
-  - 하지만 일반 객체가 이터레이션 프로토콜을 준수하도록 구현하면 이터러블이 된다.
-    ```javascript
-    let numbers = {
-      start = 0;
-      end = 2;
-
-      *[Symbol.iterator](){
-        for (let num = this.start; num<=this.end; num++){
-          yeild num+5;
-        }
-      }
-    };
-    console.log([...numbers]);
-    ```
-  
-
 
 ### Symbol.for()
   - 인자로 전달받은 문자열을 키로 사용하여 Symbol 값드리 저장되어 있는 전역 Symbol 레지스트리에서 해당 키와 일치하는 저장된 Symbol 값을 검색.
@@ -222,3 +187,84 @@
     obj[sym];            // 1
     obj[Object(sym)];    // 1
     ```
+
+
+  
+
+
+
+---
+
+## 추가
+
+
+### iterable & iterator
+
+#### 이터레이션 프로토콜
+  - ES6에서 도입된 데이터 컬렉션을 순회하기 위한 프로토콜
+    <img src="https://poiemaweb.com/img/iteration-protocol.png">
+  
+  - 이터러블(iterable)과 이터레이터(iterator)가 동일한 개념은 아니다.
+
+  1. iterable protocol
+      - Symbol.iterator 메소드를 구현하거나 프로토타입 체인에 의해 상속하는 것
+      - 이터러블 프로토콜을 준수한 객체가 이터러블 (iterable)
+
+  2. iterator protocol
+      - next 메소드를 소유하며 next 메소드를 호출하면 이터러블을 순회하며 value, done 프로퍼티를 갖는 이터레이터 리절트 객체를 반환하는 것
+      - 이 규약을 준수한 객체가 이터레이터 (iterator)
+
+#### 이터러블(iterable)
+  - **이터러블 프로토콜을 준수한 객체**
+  - 이터러블은 Symbol.iterator 메소드를 구현하거나 프로토타입 체인에 의해 상속한 객체를 말한다.
+  - Symbol.iterator 메소드는 이터레이터를 반환
+  - 이터러블은 for … of 문에서 순회할 수 있으며 Spread 문법의 대상으로 사용할 수 있다.
+  - Symbol.iterator 메소드를 소유하지 않은 일반 객체가 이터레이션 프로토콜을 준수하도록 구현하면 이터러블이 된다.
+    ```javascript
+    const obj = { a: 1, b: 2 };
+    // 일반 객체는 Symbol.iterator 메소드를 소유하지 않는다.
+    // 따라서 일반 객체는 이터러블 프로토콜을 준수한 이터러블이 아니다.
+
+    console.log(Symbol.iterator in obj); // false  
+    for (const p of obj) {   // TypeError: obj is not iterable
+      console.log(p);
+    }
+    ```
+
+    ```javascript
+    // Symbol.iterator 메소드를 구현하고 있으므로 이터러블 프로토콜을 준수한 이터러블이다.
+    let numbers = {
+      start = 0;
+      end = 2;
+
+      *[Symbol.iterator](){
+        for (let num = this.start; num<=this.end; num++){
+          yeild num+5;
+        }
+      }
+    };
+    console.log([...numbers]);
+    ```
+  
+#### 이터레이터(iterator)
+  - 이터레이터 프로토콜을 준수한 이터레이터는 next 메소드를 갖는다.
+
+#### 이터레이션 프로토콜의 필요성
+  - 이터레이션 프로토콜은 다양한 데이터 소스가 하나의 순회 방식을 갖도록 규정하여 데이터 소비자가 효율적으로 다양한 데이터 소스를 사용할 수 있도록 데이터 소비자와 데이터 소스를 연결하는 인터페이스 역할을 한다.
+    - 말하자면, 각각의 데이터에 순회 방식을 지원하는 것보다 이터레이션 프로토콜을 분리하여 해당 프로토콜만 지원하면 순회 가능하도록 만드는게 더 효율적이라는 의미.
+  
+  <img src="https://poiemaweb.com/img/iteration-protocol-interface.png" alt="인터페이스 역할의 이터레이션 프로토콜"/>
+
+  - 이터러블 데이터는 내부적으로 Symbol.iterator 메소드를 호출해 iterator를 생성하고 next()를 호출하여 순회한다.
+    - 이 때, next()가 반환한 result 객체의 value property 값을 취득한다.
+  
+
+
+
+#### 빌트인 이터러블
+  - Array, String, Map, Set
+  - TypedArray
+    - Int8Array, Uint8Array, Uint8ClampedArray, Int16Array, Uint16Array, Int32Array, Uint32Array, Float32Array, Float64Array
+  - DOM data structure(NodeList, HTMLCollection)
+  - Arguments
+
