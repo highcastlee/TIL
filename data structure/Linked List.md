@@ -143,15 +143,236 @@
   - <img src="https://itwiki.kr/images/1/1a/%EC%9D%B4%EC%A4%91_%EC%97%B0%EA%B2%B0_%EB%A6%AC%EC%8A%A4%ED%8A%B8.jpeg" alt="linked list image" />
   - 연결 저장 공간에 next뿐만 아니라, prev도 저장한 연결 리스트
   - 양방향으로 연결되어 있기 때문에, 노드를 탐색하는 방향이 양쪽으로 가능하다.
+
   ```javascript
-  <!-- node에 prev가 추가된다. -->
-  class Node {
-    constructor(data, prev=null, next = null) {
-      this.data = data;
-      this.prev = prev;
-      this.next = next;
-    }
+  // node에 prev가 추가된다.
+  function Node(data) {
+    this.data = data;
+    this.prev = prev;
+    this.next = next;
   }
 
-  <!-- 각 작업에서 prev와 next를 모두 갱신한다. -->
+  function DoubleLiskedList(){
+    this.head = null;
+    this.tail = null;
+    this.length = 0;
+  }
+
+  // size() : 연결 리스트 내 노드 개수 확인
+  DoubleLinkedList.prototype.size = function () {
+    return this.length;
+  }
+
+  // isEmpty(): 객체 내 노드 존재 여부
+  DoubleLinkedList.prototype.isEmpty = function () {
+    return this.length === 0;
+  }
+
+  //
+  DoubleLinkedList.prototype.size = function () {
+    return this.length;
+  }
   ```
+
+  - 연결 예제
+    ```javascript
+    let dll = new DoubleLinkedList();
+    let node;
+    
+    node = new Node(123);
+    dll.head = node;
+    dll.tail = node;
+    dll.length++;
+    console.log(dll);
+    // DoubleLinkedList{
+    //   head: Node(123)
+    //   tail: Node(123)
+    //   length: 1 
+    // }
+
+    node = new Node(456);
+    dll.tail.next = node;     // Node(123) next에 Node(456) 넣음
+    node.prev = dll.tail;     // Node(456) prev에 Node(123) 넣음
+    dll.tail = node;          // dll.tail 자리에 Node(456) 넣음
+    dll.length++;
+    console.log(dll);
+    // DoubleLinkedList{
+    //   head: Node{
+    //          data : 123,
+    //          next : Node(456),
+    //          prev : null,
+    //         }
+    //   tail: Node{
+    //          data : 456,
+    //          next : null,
+    //          prev : Node(123),
+    //         }
+    //   length: 1 
+    // }
+    ```
+
+  - 기타 함수
+    ```javascript
+    // printNode() : 노드 정방향 출력
+    DoubleLinkedList.prototype.printNode = function(){
+      for (let Node = this.haed; node != null; node=node.next){
+        console.log(node.data);
+      }
+      console.log('null');
+    }
+
+    // printNodeInverse() : 노드 역방향 출력
+    DoubleLinkedList.prototype.printNodeInverse = function(){
+      let temp = [];
+      for (let Node = this.tail; node != null; node=node.prev){
+        temp.push(node.data);
+      }
+      // 노드 데이터 저장 후 역방향 출력
+      for (let i = temp.length-1; i >= 0; i--){
+        console.log(temp[i]);
+      }
+      console.log('tail');
+    }
+
+    // append() : 마지막 노드 추가
+    DoubleLinkedList.prototype.append = function (value){
+      let node = new Node(value);
+
+      if (this.head === null){
+        this.head = node;
+        this.tail = node;
+      } else{
+        this.tail.next = node;  // 객체 tail 다음에 node 연결
+        node.prev = this.tail;  // 객체 tail을 node의 prev에 연결
+        this.tail = node;       // 객체의 tail을 node로 변경
+      }
+      this.length++;
+    }
+
+
+    // insert() : position 위치에 노드 추가
+    DoubleLinkedList.prototype.insert = function (value, position=0){
+      if (position < 0 || position > this.length){
+        return false;
+      }
+
+      let node = new Node(value),
+        current = this.head,
+        index = 0,
+        prev;
+      
+
+      if (position === 0){        // 첫 자리에 추가
+        if (this.head === null){    // 리스트에 데이터 없을 때
+          this.head = node;
+          this.tail = node;
+        } else{                     // 리스트에 데이터 있을 때
+          node.next = current;
+          current.prev = node;
+          this.head = node;
+        }
+      } else if (position === this.length){ // 마지막 자리에 추가
+        current = this.tail;
+        current.next = node;
+        node.prev = current;
+        this.tail = node;
+      } else{                       // 특정 index에 추가
+        while(index++ < position){
+          prev = current;           // 특정 index 이전 노드
+          current = current.next;   // 현재 옮겨야할 노드
+        }
+        node.next = current;        // 추가할 node 의 다음은 옮길 노드
+        prev.next = node;   // 이전 노드의 다음은 추가할 node
+
+        current.prev = node;  // 옮길 노드의 이전은 추가할 node
+        node.prev = prev;   // 추가할 node의 이전은 prev
+      }
+      this.length++;
+      return true;
+    }
+
+    // remove() : value 데이터를 찾아 노드 삭제
+    DoubleLinkedList.prototype.remove = function(value){
+      let current = this.head,
+        prev = current;
+      
+      while (current.data != value && current.next != null){
+        prev = current;
+        current = current.next;
+      }
+
+      // 끝까지 찾았는데 없으면 null
+      if (current.data != value){
+        return null
+      }
+
+      if (current === this.head){ // 첫 자리에 있으면
+        this.head = current.next;   // 다음 노드를 head로 설정
+        if(this.length === 1) this.tail=null; 
+        else this.head.prev = null; 
+      } else if (current === this.tail){  // 마지막 자리에 있으면
+        this.tail = current.prev;
+        this.tail.next = null;
+      } else{
+        prev.next = current.next;  // 이전 노드와 다음 노드를 연결
+        current.next.prev = prev;  // 다음 노드의 이전을 이전 노드로 연결
+      }
+
+      this.length--;
+
+      return current.data; // 현재 삭제될 데이터 리턴
+    }
+
+    // removeAt(): position 위치의 노드 삭제
+    DoubleLinkedList.prototype.removeAt = function(position=0){
+      if (position < 0 || position >= this.length){
+        return null;
+      }
+
+      let current = this.haed,
+        index = 0,
+        prev;
+
+      if (position === 0){  // 첫 자리 
+        this.head = current.next;  
+        if(this.length === 1) this.tail=null; 
+        else this.head.prev = null; 
+      } else if (position === this.length-1){  // 마지막 자리
+        current = this.tail;
+        this.tail = current.prev;
+        this.tail.next = null;
+      } else{                     // 특정 index까지 이동
+        while(index++ < position){  
+          prev = current; 
+          current = current.next;
+        }
+        prev.next = current.next; 
+        current.next.prev = prev;   
+      }
+      this.length--;
+
+      return current.data;
+    }
+
+    // indexOf(): value 값을 갖는 노드의 인덱스 반환
+    DoubleLinkedList.prototype.indexOf = function(value){
+      let current = this.head,
+        index=0;
+      
+      while (current != null){
+        if(current.data === value){
+          return index;
+        }
+        index++;
+        current = current.next;
+      }
+      return -1;
+    };
+
+    // remove2(): indexOf + removeAt = remove
+    // indexOf()와 removeAt()이 구현되어있으면, remove()는 간단하게 구현 가능
+    DoubleLinkedList.prototype.remove2 = function(value){
+      let index = this.indexOf(value);
+      return this.removeAt(index);
+    }
+    ```
