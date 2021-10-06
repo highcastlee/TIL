@@ -376,3 +376,14 @@
       return this.removeAt(index);
     }
     ```
+
+
+
+### 원형 연결 리스트
+  - tail이 없고, 마지막 데이터의 next가 첫 데이터를 가리키는 형태의 연결 리스트
+  ```javascript
+  function CircularLinkedList(){
+    this.head = null;
+    this.length = 0;
+  }
+  ```
