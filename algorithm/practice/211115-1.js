@@ -1,4 +1,5 @@
 const input = [
+  [[3, 1, -1, -3, 1, 4, -1, -4], 1],
   [[3, 2, -3, 1, -1, -2, 4, -4, 1, -1], 2],
   [[2, 4, 3, -3, 3, -2, 1, -3, -1, -4], 4],
   [[1, -1], 1],
@@ -134,23 +135,24 @@ for (let testCase of input) {
 function solution (history, infected) {
   const before = []
   let answer = []
-  const startIndex = history.indexOf(infected)
-  for (let i = 0; i < history.length; i++) {
-    if (num === -infected) break
-    let num = history[i]
-    if (num === infected) {
-      answer = answer.concat(before)
+  let isInside = false
+  for (let pNum of history) {
+    if (pNum === -infected) {
+      isInside = false
       continue
     }
-    if (i > startIndex && num > 0) {
-      answer.push(num)
+    if (pNum === infected) {
+      isInside = true
+      answer.push(...before)
       continue
     }
-    if (num > 0) before.push(num)
-    else before.splice(before.indexOf(-num), 1)
+    if (pNum > 0) {
+      before.push(pNum)
+      if (isInside) {
+        answer.push(pNum)
+        continue
+      }
+    } else before.splice(before.indexOf(-pNum), 1)
   }
-  answer = [...new Set(answer)]
-  answer.sort((x, y) => x - y)
-  console.log(answer)
-  return answer
+  console.log([...new Set(answer)].sort((x, y) => x - y))
 }
