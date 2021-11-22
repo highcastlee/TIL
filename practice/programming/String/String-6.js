@@ -1,11 +1,9 @@
+function replacer (str) {
+  return str.toUpperCase() === str ? str.toLowerCase() : str.toUpperCase()
+}
+
 function toggleCase (word) {
-  const upperWord = word.toUpperCase()
-  return [...upperWord]
-    .map((upperChar, index) => {
-      if (upperChar === word[index]) return upperChar.toLowerCase()
-      return upperChar
-    })
-    .join('')
+  return word.replace(/([A-Z])|([a-z])/g, replacer)
 }
 
 console.log(toggleCase('StuDY')) // => 'sTUdy'

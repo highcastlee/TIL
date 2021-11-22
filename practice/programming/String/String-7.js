@@ -1,16 +1,17 @@
-function compress (word) {
-  let count = 1
-  let compressedWord = [...word].reduce((result, char) => {
-    if (result[result.length - 1] === char) {
-      count += 1
-      return result
-    }
-    result += count > 1 ? count + char : char
-    count = 1
-    return result
-  }, '')
-
-  return count > 1 ? compressedWord + count : compressedWord
+function removeDuplication (arr) {
+  return [...new Set([...arr])]
 }
 
-console.log(compress('ABBCCCE')) // => AB2C3E
+function reducer (result, currentWord) {
+  return result.replace(new RegExp(`${currentWord}+`, 'g'), replaceCount)
+}
+
+function replaceCount (str) {
+  return str.length < 2 ? str : str[0] + str.length
+}
+
+function compress (word) {
+  return removeDuplication(word).reduce(reducer, word)
+}
+
+console.log(compress('ABBCCCECC')) // => AB2C3EC2
