@@ -1,6 +1,5 @@
 function countUpperCase (word) {
-  const regExp = /[A-Z]/g
-  return word.match(regExp).length
+  return word.match(/[A-Z]/g).length
 }
 
 countUpperCase('KoreaTimeGood') // => 3

@@ -5,11 +5,7 @@ const todos = [
 ]
 
 const getMaxId = todos => {
-  const INITIAL_ID = 0
-  return todos.reduce(
-    (maxId, todo) => (todo.id > maxId ? todo.id : maxId),
-    INITIAL_ID
-  )
+  return Math.max(...todos.map(todo => todo.id), 0)
 }
 
 console.log(getMaxId(todos)) // 3

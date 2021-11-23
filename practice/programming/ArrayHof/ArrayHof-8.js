@@ -4,12 +4,6 @@ const todos = [
   { id: 1, content: 'Javascript', completed: false }
 ]
 
-const countCompletedTodos = todos => {
-  const INITIAL_COUNT = 0
-  return todos.reduce(
-    (count, todo) => (todo.completed ? count + 1 : count),
-    INITIAL_COUNT
-  )
-}
+const countCompletedTodos = todos => todos.filter(todo => todo.completed).length
 
 console.log(countCompletedTodos(todos)) // 1

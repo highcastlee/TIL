@@ -1,9 +1,17 @@
-function isEqualDate (firstDate, secondDate) {
-  if (firstDate.getFullYear() !== secondDate.getFullYear()) return false
-  if (firstDate.getMonth() !== secondDate.getMonth()) return false
-  if (firstDate.getDate() !== secondDate.getDate()) return false
-  return true
+/**
+ *
+ * @param {Date} date1
+ * @param {Date} date2
+ * @returns
+ */
+
+function isEqualDate (date1, date2) {
+  return (
+    date1.getFullYear() === date2.getFullYear() &&
+    date1.getMonth() === date2.getMonth() &&
+    date1.getDate() === date2.getDate()
+  )
 }
 
-isEqualDate(new Date('2021/07/24'), new Date('2021/07/24')) // => true
-isEqualDate(new Date('2021/07/24'), new Date('2022/07/2')) // => false
+console.log(isEqualDate(new Date('2021/07/24'), new Date('2021/07/24'))) // => true
+console.log(isEqualDate(new Date('2021/07/24'), new Date('2022/07/2'))) // => false

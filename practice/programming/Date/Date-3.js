@@ -1,10 +1,10 @@
+// 날짜를 나타내는 3번째 매개변수에 0을 전달하면 전월 말일 Date 객체 반환
 function getLastDateOfMonth (year, monthIndex) {
-  const oneDayTime = 24 * 60 * 60 * 1000 // hour, minute, second, milisecond
-  return new Date(Date.UTC(year, monthIndex + 1) - oneDayTime).getDate()
+  return new Date(year, monthIndex + 1, 0).getDate()
 }
 
 // 2021년 1월의 마지막 날은 31일
-getLastDateOfMonth(2021, 0) // => 31
+console.log(getLastDateOfMonth(2021, 0)) // => 31
 
 // 2021년 2월의 마지막 날은 28일
-getLastDateOfMonth(2021, 1) // => 28
+console.log(getLastDateOfMonth(2021, 1)) // => 28

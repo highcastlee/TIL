@@ -7,11 +7,11 @@ const todos = [
 const render = todos =>
   todos
     .map(
-      todo => `
-      <li id="${todo.id}">
+      ({ id, content, completed }) => `
+      <li id="${id}">
         <label>
-          <input type="checkbox" ${todo.completed ? 'checked' : ''}>
-          ${todo.content}
+          <input type="checkbox" ${completed ? 'checked' : ''}>
+          ${content}
         </label>
       </li>`
     )

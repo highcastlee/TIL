@@ -1,12 +1,7 @@
-function getEnglishNumber (str) {
-  const reqExp = /[A-Za-z0-9]/g
-  return str.match(reqExp).join('')
-}
-
 function isPalindrome (str) {
-  const word = getEnglishNumber(str).toUpperCase()
+  const word = str.toLowerCase().replace(/[^a-z0-9]/g, '')
   return word === [...word].reverse().join('')
 }
 
-isPalindrome('A man, a plan, a canal: Panama') // => true
-isPalindrome('race a car') // => false
+console.log(isPalindrome('A man, a plan, a canal: Panama')) // => true
+console.log(isPalindrome('race a car')) // => false

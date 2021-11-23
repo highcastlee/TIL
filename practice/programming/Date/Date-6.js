@@ -1,6 +1,5 @@
-function diffDays (firstDate, secondDate) {
-  const oneDayTime = 24 * 60 * 60 * 1000
-  return Math.abs(firstDate - secondDate) / oneDayTime
+function diffDays (from, to) {
+  return Math.abs(from - to) / (24 * 60 * 60 * 1000)
 }
 
-diffDays(new Date('2021/01/01'), new Date('2021/12/31')) // => 364
+console.log(diffDays(new Date('2021/01/01'), new Date('2021/12/31'))) // => 364

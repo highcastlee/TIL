@@ -5,9 +5,7 @@ let todos = [
 ]
 
 const compareByKey = key => (left, right) => {
-  if (left[key] < right[key]) return -1
-  if (left[key] > right[key]) return 1
-  return 0
+  return left[key] < right[key] ? -1 : left[key] == right[key] ? 0 : 1
 }
 
 const sortBy = (todos, key) => {

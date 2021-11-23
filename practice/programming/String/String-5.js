@@ -1,6 +1,5 @@
 function count (str, findChar) {
-  const regExp = new RegExp(findChar, 'g')
-  return str.match(regExp).length
+  return str.match(new RegExp(findChar, 'g')).length
 }
 
 count('COMPUTERPROGRAMMING', 'R') // => 3
