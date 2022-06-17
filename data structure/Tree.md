@@ -23,12 +23,37 @@
 ### 4. 자료구조 이진 탐색 트리의 장점과 용도
   - 용도 : 주로 데이터 검색에 활용
   - 장점 : 탐색 속도를 개선할 수 있음
-  - 단점 : 평균 시간 복잡도는 O(logn)이지만, 정렬된 데이터에서는 연결 리스트의 시간복잡도와 동일한 O(n)을 가진다.
+    - **이진트리와 정렬된 배열간의 탐색 비교**
+      - 정렬된 배열 : 처음부터 index 증가하며 탐색 O(n)
+      - BST : 중간 값을 찾으며 빠르게 탐색 O(logn)
 
-  - **이진트리와 정렬된 배열간의 탐색 비교**
-    - 정렬된 배열 : 처음부터 index 증가하며 탐색 O(n)
-    - BST : 중간 값을 찾으며 빠르게 탐색 O(logn)
+  - 단점 : 평균 시간 복잡도는 O(logn)이지만, 편향된 데이터에서는 O(n)을 가진다.
 
+  - 편향 이진 탐색 트리를 문제를 해결하기 위해 자가 균형 이진 탐색 트리인 **Red-Black-tree** 가 있음
+
+### Red-black-tree
+  <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcitWfI%2FbtrptgRQlFi%2Fvd9FwY1WQKUpKDkjZWIGD1%2Fimg.png">
+
+  - 자가 균형 이진 탐색 트리
+  - 조건
+    - 모든 노드는 Red 혹은 Black이다
+    - 루트 노드는 Black이다
+    - 모든 리프 노드(NIL)들은 검은색이다. (NIL : null leaf, 자료를 갖지 않고 트리의 끝을 나타내는 노드)
+    - 빨간색 노드의 자식은 검은색이다. No Double Red(빨간색 노드가 연속으로 나올 수 없다)
+    - 모든 리프 노드에서 Black Depth는 같다. 
+      - 리프노드에서 루트 노드까지 가는 경로에서 만나는 검은색 노드의 개수가 같다.
+  - Double Red 발생 시 처리 방법
+    1. Restructuring
+        - 조건 : double red 발생한 노드의 삼촌 노드(부모의 형제노드)가 black 일 때 
+        - 수정 단계
+          1. 조상, 부모, 현재 노드를 정렬하여 중간 값을 부모 노드로, 나머지를 자식 노드로 설정
+          2. 부모 노드는 Black, 자식 노드는 Red로 설정
+    2. Recoloring
+        - 조건 : double red 발생한 노드의 삼촌 노드가 red 일 때
+        - 수정 단계
+          1. 부모와 삼촌 노드를 Black으로 바꾸고, 조상 노드를 Red로 바꾼다.
+            (조상 노드가 root라면 black으로 바꾼다.)
+          2. 다시 double red가 발생하면 계속 restructuring 또는 recoloring을 실행한다.
 
 ### javascript 로 구현하는 Tree
 
